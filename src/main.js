@@ -73,10 +73,11 @@ let move2 = () => {
     painting()
 }
 
-function painting(n) {
+function painting(n = Infinity) {
     //写在页面上和内部css上
     html.innerHTML = string2
-    n ? style.innerHTML = string : style.innerHTML = string.substring(0, n)
+    console.log('n', n)
+    style.innerHTML = string.substring(0, n)
     window.scrollTo(0, 99999);
     html.scrollTo(0, 99999);
 }
