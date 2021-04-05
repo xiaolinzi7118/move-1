@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::after {
+    box-sizing: border-box;
+  }
+  
+*::before {
+    box-sizing: border-box;
+  }
+#html{
+    word-break: break-all;
+    /*浏览器实现任意大小位置的换行*/
+}
+#div{
+    position: fixed;
+    left: 50%;
+    transform:translateX(-50%);
+    top:20px;
+}
+#div1{
+    position: relative;
+}
+#div1::before, #div1::after{
+    content:'';
+    display: block;
+    position: absolute;
+    width:100px;
+    height:100px;
+    left:50%;
+    transform:translateX(-50%);
+}
+@keyframes rotate {
+    0%{
+        transform:rotate(0deg);
+    }
+    50%{
+        transform:rotate(180deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+/*考虑手机，媒体查询，当宽度小于500的时候认为是手机*/
+@media (max-width:500px) {
+    #html {
+        height: 50vh;
+        overflow: auto;
+      }
+    
+      #div {
+        height: 50vh;
+        position: relative;
+        bottom: 0;
+        right:50%;
+      }
+}
