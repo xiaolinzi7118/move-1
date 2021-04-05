@@ -48,26 +48,57 @@ let string = `/*你好呀,我叫小林子
 `
 let n = 0
 let string2 = ''
+let x = 50
+let btn = document.getElementsByTagName('button')
 
+let timer
 let move = () => {
-    setTimeout(() => {
+    timer = setTimeout(() => {
         //判断是否是回车或者空格
-        if (string[n] === '\n') {
-            string2 += '<br>'
-        } else if (string[n] === ' ') {
-            string2 += '&nbsp;'
-        } else {
-            string2 += string[n]
-        }
+        joinStr(n)
         //写在页面上和内部css上
-        html.innerHTML = string2
-        style.innerHTML = string.substring(0, n)
-        window.scrollTo(0, 99999);
-        html.scrollTo(0, 99999);
+        painting(n)
         if (n < string.length - 1) {
             n += 1
             move()
         }
-    }, 50)
+    }, x)
+}
+let move2 = () => {
+
+    for (let i = 0; i < string.length; i++) {
+        joinStr(i)
+    }
+    //写在页面上和内部css上
+    painting()
+}
+
+function painting(n) {
+    //写在页面上和内部css上
+    html.innerHTML = string2
+    n ? style.innerHTML = string : style.innerHTML = string.substring(0, n)
+    window.scrollTo(0, 99999);
+    html.scrollTo(0, 99999);
+}
+function joinStr(n) {
+    if (string[n] === '\n') {
+        string2 += '<br>'
+    } else if (string[n] === ' ') {
+        string2 += '&nbsp;'
+    } else {
+        string2 += string[n]
+    }
+}
+
+
+btn[0].onclick = () => {
+    x = 0
+}
+btn[1].onclick = () => {
+    x = 100
+}
+btn[2].onclick = () => {
+    clearTimeout(timer)
+    move2()
 }
 move()
